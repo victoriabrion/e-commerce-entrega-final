@@ -16,8 +16,9 @@ const CartItem = ({item}) => {
             <Text style={styles.text2}>Quantity: {item.quantity}</Text>
             <Text style={styles.text2}>Price: ${item.price}</Text>
         </View>
-        <Pressable onPress={() => dispatch(deleteCartItem(item.id))} />
+        <Pressable onPress={() => dispatch(deleteCartItem(item.id))}>
         <Entypo name='trash' size={30} color= {colors.primary} />
+        </Pressable>
     </View>
   )
 }

@@ -22,6 +22,8 @@ const onSubmit = async () => {
     try {
         loginSchema.validateSync({email, password})
         const {data} = await triggerLogin({email, password})
+        //await deleteSession(data)
+        //await insertSession(data)
         dispatch(setUser({email: data.email, idToken: data.idToken, localId:data.localId}))
       } catch (error) {
           setErrorEmail('')
@@ -34,6 +36,7 @@ const onSubmit = async () => {
             setErrorPassword (error.message)
             break
           default:
+            setErrorEmail ('Invalid email/pass combination')
             break
         }
       } 

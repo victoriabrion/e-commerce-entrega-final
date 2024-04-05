@@ -10,7 +10,6 @@ const MainNavigator = () => {
   const user = useSelector((state) => state.auth)
 
   useEffect(()=>{
-    console.log(user)
   },[user])
 
   return (

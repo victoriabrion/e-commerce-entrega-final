@@ -13,6 +13,7 @@ const ImageSelector = ({navigation}) => {
     const {data, isSuccess} = useGetImageQuery(localId)
 
     useEffect (() => {
+        console.log("inside useffect")
         if (isSuccess && data) setImage (data.image)
     }, [isSuccess, data])
 
@@ -26,18 +27,21 @@ const ImageSelector = ({navigation}) => {
                     base64: true
                 })
                 if (!result.canceled){
+                    console.log("set image")
                     setImage('data:image/jpeg:base64,' + result.assets[0].base64)
                 }
             }
     }
     const confirmImage = () => {
+        console.log("confirm image selected")
+        console.log("image:" , image)
         triggerImage({image, localId})
         navigation.goBack()
     }  
     
 return (
     <View style={styles.container}>
-      <Image source= {image ? {uri:image} : require ('../../assets/favicon.png')} style={styles.image} resizeMode='cover' />
+      <Image source= {image ? {uri:image} : require ('../../assets/profiledefault.png')} style={styles.image} resizeMode='cover' />
       <AddButton title= 'Take photo' onPress={pickImage} />
       <AddButton title= 'Confirm photo' onPress={confirmImage} />
     </View>

@@ -29,7 +29,7 @@ const Cart = ({navigation}) => {
         <FlatList data={cart.items} keyExtractor={(item)=> item.id} renderItem={({item})=> <CartItem item={item}/>}/>
         <View style={styles.confirmContainer}>
             <Pressable onPress={handlerAddOrder}>
-                <Text style={styles.confirmText}>Add</Text>
+                <Text style={styles.confirmText}>Checkout order</Text>
             </Pressable>
             <Text style={styles.confirmText}>Total: $ {cart.total}</Text>
         </View>

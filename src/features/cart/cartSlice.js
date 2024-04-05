@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { Alert } from 'react-native'
 
 const initialState = {
     items: [],
@@ -22,6 +23,11 @@ const cartSlice = createSlice({
                 })
             }
             state.total = state.items.reduce((acc,item)=> acc = acc + (item.price * item.quantity),0)
+            Alert.alert('Item added to cart!', 'Item added to cart!'[
+                {
+                  text: 'OK',
+                }
+              ]);
         },
         deleteCartItem: (state, actions) => {
             state.items = state.items.filter((item) => item.id !== actions.payload)
