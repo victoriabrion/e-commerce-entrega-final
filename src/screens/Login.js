@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 import { loginSchema } from '../utils/validations/authSchema'
+import { deleteSession, insertSession } from '../utils/db'
 
 const Login = ({navigation}) => {
 
@@ -22,8 +23,8 @@ const onSubmit = async () => {
     try {
         loginSchema.validateSync({email, password})
         const {data} = await triggerLogin({email, password})
-        //await deleteSession(data)
-        //await insertSession(data)
+        deleteSession()
+        insertSession(data)
         dispatch(setUser({email: data.email, idToken: data.idToken, localId:data.localId}))
       } catch (error) {
           setErrorEmail('')

@@ -1,8 +1,18 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import colors from '../utils/globals/colors'
-import { AntDesign } from '@expo/vector-icons'
+import { Entypo, AntDesign } from '@expo/vector-icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser } from '../features/auth/authSlice'
+import { deleteSession } from '../utils/db'
 
 const Header = ({title = 'Ecommerce', navigation}) => {
+
+  const dispatch = useDispatch()
+  const idToken = useSelector(state => state.auth.idToken)
+  const onLogout = () => {
+    dispatch(clearUser())
+    deleteSession()
+  }
 
   return (
     <View style= {styles.container}>
@@ -11,6 +21,11 @@ const Header = ({title = 'Ecommerce', navigation}) => {
         <AntDesign name = 'back' size = {25} color = 'white' />
       </Pressable>}
       <Text style= {styles.text}>{title}</Text>
+      {idToken && (
+        <Pressable style = {styles.logoutIcon} onPress={onLogout}>
+          <Entypo name='log-out' size={30} color='black'/>
+        </Pressable>
+      )}
     </View>
   )
 }
@@ -36,5 +51,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 10,
     bottom: 25,
+  },
+  logoutIcon: {
+    position:"absolute",
+        right:10,
+        bottom:15,
   }
 })
