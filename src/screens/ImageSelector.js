@@ -13,8 +13,9 @@ const ImageSelector = ({navigation}) => {
     const {data, isSuccess} = useGetImageQuery(localId)
 
     useEffect (() => {
-        console.log("inside useffect")
-        if (isSuccess && data) setImage (data.image)
+        if (isSuccess && data) {
+            setImage (data.image)
+        }
     }, [isSuccess, data])
 
     const pickImage = async () => {
@@ -27,14 +28,11 @@ const ImageSelector = ({navigation}) => {
                     base64: true
                 })
                 if (!result.canceled){
-                    console.log("set image")
-                    setImage('data:image/jpeg:base64,' + result.assets[0].base64)
+                    setImage('data:image/jpeg;base64,' + result.assets[0].base64)
                 }
             }
     }
     const confirmImage = () => {
-        console.log("confirm image selected")
-        console.log("image:" , image)
         triggerImage({image, localId})
         navigation.goBack()
     }  
