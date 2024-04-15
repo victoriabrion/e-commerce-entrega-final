@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import colors from '../utils/globals/colors'
-import { Entypo, AntDesign } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearUser } from '../features/auth/authSlice'
 import { deleteSession } from '../utils/db'
@@ -23,7 +23,7 @@ const Header = ({title = 'Ecommerce', navigation}) => {
       <Text style= {styles.text}>{title}</Text>
       {idToken && (
         <Pressable style = {styles.logoutIcon} onPress={onLogout}>
-          <Entypo name='log-out' size={30} color='black'/>
+          <AntDesign name='logout' size={30} color='black'/>
         </Pressable>
       )}
     </View>

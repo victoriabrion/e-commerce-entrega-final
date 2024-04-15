@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { Entypo } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import colors from '../utils/globals/colors'
 import { useDispatch } from 'react-redux'
 import { deleteCartItem } from '../features/cart/cartSlice'
@@ -17,7 +17,7 @@ const CartItem = ({item}) => {
             <Text style={styles.text2}>Price: ${item.price}</Text>
         </View>
         <Pressable onPress={() => dispatch(deleteCartItem(item.id))}>
-        <Entypo name='trash' size={30} color= {colors.primary} />
+        <Feather name='trash' size={30} color= {colors.primary} />
         </Pressable>
     </View>
   )
